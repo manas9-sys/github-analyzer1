@@ -17,5 +17,6 @@ export function isValidGitHubUsername(username) {
 }
 
 export function sanitizeUsername(username) {
-  return typeof username === 'string' ? username.trim().toLowerCase() : '';
+  // Trim whitespace; preserve case — GitHub API is case-insensitive and returns canonical casing
+  return typeof username === 'string' ? username.trim() : '';
 }

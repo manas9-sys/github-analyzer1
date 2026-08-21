@@ -1,0 +1,12 @@
+{
+  "name": "github-profile-analyzer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Full-stack GitHub Profile Analyzer with AI insights and developer scoring",
+  "scripts": {
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build:frontend": "npm --prefix frontend run build",
+    "test:backend": "npm --prefix backend test"
+  }
+}
