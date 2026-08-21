@@ -14,7 +14,12 @@ export async function fetchAnalysis(username, forceRefresh = false) {
 
   const json = await response.json();
   if (!response.ok || !json.success) {
-    const error = new Error(json.error || `Request failed with status ${response.status}`);
+    const rawError = json.error;
+    const errorMsg =
+      typeof rawError === 'string'
+        ? rawError
+        : rawError?.message || `Request failed with status ${response.status}`;
+    const error = new Error(errorMsg);
     error.status = response.status;
     error.code = json.code;
     throw error;
@@ -27,7 +32,12 @@ export async function fetchRepoDetails(username, repo) {
   const response = await fetch(`${API_BASE}/repos/${encodeURIComponent(username)}/${encodeURIComponent(repo)}`);
   const json = await response.json();
   if (!response.ok || !json.success) {
-    throw new Error(json.error || 'Failed to fetch repository details');
+    const rawError = json.error;
+    const errorMsg =
+      typeof rawError === 'string'
+        ? rawError
+        : rawError?.message || 'Failed to fetch repository details';
+    throw new Error(errorMsg);
   }
   return json.data;
 }
