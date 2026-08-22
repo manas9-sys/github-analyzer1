@@ -2,7 +2,7 @@
  * Backend API Client
  */
 
-const API_BASE = 'https://github-analyzer1-b1cm.onrender.com';
+const API_BASE = '/api';
 
 export async function fetchAnalysis(username, forceRefresh = false) {
   const query = forceRefresh ? '?refresh=true' : '';
