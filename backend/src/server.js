@@ -48,6 +48,7 @@ app.use((err, req, res, next) => {
     error: err.message || 'Internal Server Error'
   });
 });
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`[Backend] Server listening on port ${PORT}`);
+
+app.listen(PORT, () => {
+  console.log(`[Backend] Server listening on http://localhost:${PORT}`);
 });
