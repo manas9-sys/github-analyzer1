@@ -2,7 +2,7 @@
  * Backend API Client
  */
 
-const API_BASE = '/api';
+const API_BASE = '';
 
 export async function fetchAnalysis(username, forceRefresh = false) {
   const query = forceRefresh ? '?refresh=true' : '';
