@@ -18,6 +18,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api', analyzerRoutes);
+app.use('/', analyzerRoutes);
 
 // Root route
 app.get('/', (req, res) => {

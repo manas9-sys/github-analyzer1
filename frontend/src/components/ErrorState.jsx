@@ -3,7 +3,8 @@ import { AlertTriangle, RefreshCw, ArrowLeft, Key, HelpCircle } from 'lucide-rea
 
 export function ErrorState({ error, onRetry, onHome, username }) {
   const isRateLimit = error?.status === 429 || error?.code === 'RATE_LIMIT_EXCEEDED';
-  const isNotFound = error?.status === 404 || error?.code === 'USER_NOT_FOUND';
+  const isNotFound = error?.code === 'USER_NOT_FOUND' || (error?.status === 404 && error?.message?.toLowerCase().includes('user not found'));
+  const isRouteNotFound = error?.status === 404 && !isNotFound;
 
   return (
     <div className="max-w-xl mx-auto my-16 px-4">
@@ -15,6 +16,8 @@ export function ErrorState({ error, onRetry, onHome, username }) {
         <h3 className="text-lg font-bold text-white mb-2">
           {isNotFound
             ? `User "${username}" Not Found`
+            : isRouteNotFound
+            ? 'API Route Not Found'
             : isRateLimit
             ? 'GitHub API Rate Limit Reached'
             : 'Analysis Failed'}

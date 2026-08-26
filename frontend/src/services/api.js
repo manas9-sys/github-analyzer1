@@ -2,7 +2,16 @@
  * Backend API Client
  */
 
-const API_BASE = '/api';
+const getApiBase = () => {
+  const envUrl = import.meta.env.VITE_API_URL;
+  if (envUrl && envUrl.trim()) {
+    const trimmed = envUrl.trim().replace(/\/+$/, '');
+    return trimmed.endsWith('/api') ? trimmed : `${trimmed}/api`;
+  }
+  return '/api';
+};
+
+const API_BASE = getApiBase();
 
 export async function fetchAnalysis(username, forceRefresh = false) {
   const query = forceRefresh ? '?refresh=true' : '';
