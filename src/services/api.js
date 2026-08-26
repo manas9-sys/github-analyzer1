@@ -3,7 +3,7 @@
  */
 
 const getApiBase = () => {
-  const envUrl = import.meta.env.VITE_API_URL;
+  const envUrl = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? '/api' : 'https://github-analyzer1-b1cm.onrender.com');
   if (envUrl && envUrl.trim()) {
     const trimmed = envUrl.trim().replace(/\/+$/, '');
     return trimmed.endsWith('/api') ? trimmed : `${trimmed}/api`;
